@@ -7,6 +7,8 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "babel-loader": "^8.0.6",
     "electron": "^7.1.10",
@@ -16,7 +18,12 @@
   },
   "scripts": {
     "start": "electron .",
+    "watch": "webpack --config webpack.config.js --watch --mode=development",
     "build": "webpack --config webpack.config.js --mode=production",
     "dist": "electron-packager . viewr --platform=win32 --out=dist"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.8.3",
+    "uuid": "^3.4.0"
   }
 }
