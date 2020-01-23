@@ -2,6 +2,9 @@ import { remote } from 'electron';
 import Store from './renderer/store';
 import FileSystem from './renderer/filesystem';
 import Dialog from './renderer/dialog';
+import Viewer from './renderer/viewer';
+
+let currFile = null;
 
 async function init() {
     let name = 'dir';
@@ -14,7 +17,8 @@ async function init() {
     FileSystem.clear();
     FileSystem.load(dir);
     console.log('loaded', dir);
-    console.log(FileSystem.getWeightedRandom());
+    currFile = FileSystem.getWeightedRandom();
+    Viewer.loadImage(currFile);
 }
 
 init();
