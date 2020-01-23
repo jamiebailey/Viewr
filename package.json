@@ -1,0 +1,8 @@
+{
+  "name": "viewr",
+  "version": "1.0.0",
+  "description": "Picture/Video viewer",
+  "main": "index.js",
+  "author": "Jamie Bailey <jamie.bailey.dev@gmail.com>",
+  "license": "MIT"
+}
