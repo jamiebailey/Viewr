@@ -10,26 +10,58 @@ export default class FileSystem {
         files = [];
     }
 
-    static load = (filepath) => {
+    static load = filepath => {
         this.files = [];
         for(let file of this.getPathFilesRecursive(filepath)) {
-            this.setStore(file, 'id', this.getFileID(file));
-            this.setStore(file, 'path', file);
-            this.files.push(this.getStore(file));
+            this._setStore(file, 'id', this._getFileID(file));
+            this._setStore(file, 'path', file);
+            this.files.push(this._getStore(file));
         }
-        console.log(this.files);
     }
 
-    static setStore(file, name, value) {
-        let sname = 'app.image.' + this.getFileID(file);
+    static like = (filepath, amount = 1) => {
+        let i = this._getFileIndex(filepath);
+        let obj = this.files[i];
+        obj.likes = (obj.likes !== undefined) ? obj.likes += amount : amount;
+        this.files[i] = obj;
+        this._setStore(obj.path, 'likes', obj.likes);
+    };
+
+    static unlike = filepath => {
+        return this.like(filepath, -1);
+    }
+
+    static getWeightedRandom = () => {
+        let pool = [];
+        for(let file of this.files) {
+            let likes = (file.likes !== undefined) ? file.likes : 0;
+            for(let i = 0; i <= likes; i++) {
+                pool.push(file);
+            }
+        }
+        return this.files[Math.floor(Math.random() * pool.length)].path;
+    }
+
+    static _getFileIndex = file => {
+        let index = 0;
+        for(let obj of this.files) {
+            if(obj.id === this._getFileID(file)) {
+                return index;
+            }
+            index++;
+        }
+    }
+
+    static _setStore(file, name, value) {
+        let sname = 'app.image.' + this._getFileID(file);
         let obj = Store.get(sname);
         obj = (!obj) ? {} : JSON.parse(obj);
         obj[name] = value;
         Store.set(sname, JSON.stringify(obj));
     }
 
-    static getStore(file, name = null) {
-        let sname = 'app.image.' + this.getFileID(file);
+    static _getStore(file, name = null) {
+        let sname = 'app.image.' + this._getFileID(file);
         let obj = Store.get(sname);
         if(!obj) {
             return null;
@@ -38,7 +70,7 @@ export default class FileSystem {
         return (name === null) ? obj : obj[name];
     }
 
-    static getFileID = filepath => {
+    static _getFileID = filepath => {
         try {
             return uuid(filepath, uuid.URL);
         } catch (err) {
