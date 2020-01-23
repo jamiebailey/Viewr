@@ -2,7 +2,21 @@
   "name": "viewr",
   "version": "1.0.0",
   "description": "Picture/Video viewer",
-  "main": "index.js",
+  "main": "build/main.js",
   "author": "Jamie Bailey <jamie.bailey.dev@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "electron": "^7.1.10",
+    "electron-packager": "^14.2.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "webpack --config webpack.config.js --mode=production",
+    "dist": "electron-packager . viewr --platform=win32 --out=dist"
+  }
 }
