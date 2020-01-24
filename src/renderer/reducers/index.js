@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SET_DIR, LOAD_FILE } from './actions';
+import { SET_DIR, LOAD_FILE } from '../actions/';
 
 function app(state = null, action) {
     if(state === null) {

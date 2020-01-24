@@ -3,9 +3,9 @@ import Viewer from '../containers/Viewer';
 
 export default class App extends Component {
 
-    onKeyPress = (e) => {
+    onKeyDown = (e) => {
         e.preventDefault();
-        this.props.onKeyPress(e);
+        this.props.onKeyDown(e);
     };
     
     onLoad = () => {
@@ -13,8 +13,8 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        if(this.props.onKeyPress) {
-            window.addEventListener('keypress', this.onKeyPress)
+        if(this.props.onKeyDown) {
+            window.addEventListener('keypress', this.onKeyDown)
         }
         if(this.props.onLoad) {
             window.addEventListener('load', this.onLoad);

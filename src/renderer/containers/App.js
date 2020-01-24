@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import Pres from '../components/App';
 import FileSystem from '../system/filesystem';
-import store from '../../store';
-import { setDir, loadFile } from '../../actions';
+import { setDir, loadFile } from '../actions';
 import Dialog from '../dialog';
 import Storage from '../system/storage';
 
@@ -28,7 +27,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onKeyPress: e => {
+        onKeyDown: e => {
             e.preventDefault();
             switch(e.charCode) {
                 case 114: // r
