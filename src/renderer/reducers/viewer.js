@@ -1,4 +1,4 @@
-import { LOAD_FILE, LIKE_FILE } from '../actions/';
+import { LOAD_FILE, LIKE_FILE, DISLIKE_FILE } from '../actions/';
 
 export default function viewer(state = null, action) {
     if(state === null) {
@@ -22,7 +22,10 @@ export default function viewer(state = null, action) {
             return Object.assign({}, state, {
                 action: action.type
             })
-            return state;
+        case DISLIKE_FILE:
+            return Object.assign({}, state, {
+                action: action.type
+            })
         default:
             return state;
     }

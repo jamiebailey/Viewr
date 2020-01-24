@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Pres from '../components/App';
 import FileSystem from '../system/filesystem';
-import { setDir, loadFile, likeFile } from '../actions';
+import { setDir, loadFile, likeFile, dislikeFile } from '../actions';
 import Dialog from '../dialog';
 import Storage from '../system/storage';
 
@@ -43,6 +43,9 @@ const mapDispatchToProps = (dispatch) => {
                     break;
                 case 76: // l
                     dispatch(likeFile());
+                    break;
+                case 75: // k
+                    dispatch(dislikeFile());
                     break;
             }
         },
