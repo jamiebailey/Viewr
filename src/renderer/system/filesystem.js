@@ -10,19 +10,28 @@ export default class FileSystem {
         this.files = this.folder.allFiles;
     }
 
-    static getRandomFile = () => {
-        let pool = [];
+    static getTotalLikes = () => {
+        let likes = 0;
         for(let file of this.files) {
-            for(let i = 0; i <= file.likes; i++) {
-                pool.push(file);
+            likes += file.likes;
+        }
+        return likes;
+    }
+
+    static getRandomFile = () => {
+        let likes = this.getTotalLikes();
+        let rand = Math.floor(Math.random() * (likes + this.files.length));
+        let offset = 0;
+        for(let file of this.files) {
+            offset += file.likes + 1;
+            if(offset - 1 > rand) {
+                if(this.prevFile !== undefined) {
+                    if(this.prevFile.id === file.id && this.files.length > 1) {
+                        return this.getRandomFile();
+                    }
+                }
+                return this.prevFile = file;
             }
         }
-        let i = Math.floor(Math.random() * pool.length);
-        if(this.prevFile !== undefined) {
-            if(this.prevFile.id === pool[i].id) {
-                return this.getRandomFile();
-            }
-        }
-        return this.prevFile = pool[i];
     }
 }
