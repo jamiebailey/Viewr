@@ -3,6 +3,7 @@ import Folder from './folder';
 export default class FileSystem {
     folder = null;
     files = [];
+    prevFile = null;
 
     static setFolder = (dirname) => {
         this.folder = new Folder(dirname);
@@ -10,7 +11,19 @@ export default class FileSystem {
     }
 
     static getRandomFile = () => {
-        let i = Math.floor(Math.random() * this.files.length);
-        return this.files[i];
+        let pool = [];
+        for(let file of this.files) {
+            for(let i = 0; i <= file.likes; i++) {
+                pool.push(file);
+            }
+        }
+        let i = Math.floor(Math.random() * pool.length);
+        console.log(this.prevFile);
+        if(this.prevFile !== undefined) {
+            if(this.prevFile.id === pool[i].id) {
+                i = Math.floor(Math.random() * pool.length);
+            }
+        }
+        return this.prevFile = pool[i];
     }
 }

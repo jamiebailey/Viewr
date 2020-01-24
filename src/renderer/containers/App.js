@@ -25,7 +25,7 @@ const mapStateToProps = (state, ownProps) => {
     };
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
         onKeyDown: e => {
             e.preventDefault();
