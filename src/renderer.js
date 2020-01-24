@@ -1,10 +1,8 @@
-import { remote } from 'electron';
 import Store from './renderer/store';
-import FileSystem from './renderer/filesystem';
+import FileSystem from './renderer/system/filesystem';
 import Dialog from './renderer/dialog';
 import Viewer from './renderer/viewer';
 
-let currFile = null;
 
 async function init() {
     let name = 'dir';
@@ -14,11 +12,8 @@ async function init() {
         Store.set(name, dir);
         return init();
     }
-    FileSystem.clear();
-    FileSystem.load(dir);
-    console.log('loaded', dir);
-    currFile = FileSystem.getWeightedRandom();
-    Viewer.loadImage(currFile);
+    FileSystem.setFolder(dir);
+    new Viewer(FileSystem.getRandomFile());
 }
 
 init();
@@ -33,6 +28,9 @@ window.addEventListener('keypress', async e => {
             }
             Store.set('dir', dir);
             init();
+            break;
+        case 114:
+            new Viewer(FileSystem.getRandomFile());
             break;
     }
 });
