@@ -14,7 +14,7 @@ export default class App extends Component {
 
     componentDidMount() {
         if(this.props.onKeyDown) {
-            window.addEventListener('keypress', this.onKeyDown)
+            window.addEventListener('keydown', this.onKeyDown)
         }
         if(this.props.onLoad) {
             window.addEventListener('load', this.onLoad);

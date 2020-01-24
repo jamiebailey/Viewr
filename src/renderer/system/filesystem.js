@@ -18,7 +18,6 @@ export default class FileSystem {
             }
         }
         let i = Math.floor(Math.random() * pool.length);
-        console.log(this.prevFile);
         if(this.prevFile !== undefined) {
             if(this.prevFile.id === pool[i].id) {
                 i = Math.floor(Math.random() * pool.length);

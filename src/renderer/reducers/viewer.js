@@ -1,11 +1,12 @@
-import { LOAD_FILE } from '../actions/';
+import { LOAD_FILE, LIKE_FILE } from '../actions/';
 
 export default function viewer(state = null, action) {
     if(state === null) {
         state = {
             file: null,
             index: 0,
-            list: []
+            list: [],
+            action: null
         };
     }
 
@@ -14,9 +15,14 @@ export default function viewer(state = null, action) {
             return Object.assign({}, state, {
                 file: action.file,
                 index: state.list.length,
-                list: state.list.concat([action.file])
+                list: state.list.concat([action.file]),
+                action: action.type
             });
-            break;
+        case LIKE_FILE:
+            return Object.assign({}, state, {
+                action: action.type
+            })
+            return state;
         default:
             return state;
     }

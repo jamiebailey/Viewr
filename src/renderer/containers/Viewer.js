@@ -1,10 +1,16 @@
 import { connect } from 'react-redux';
 import Pres from '../components/Viewer';
+import { LIKE_FILE } from '../actions/';
 
 const mapStateToProps = (state, ownProps) => {
-    let file = state.viewer.file;
+    let viewer = state.viewer;
+    let file = viewer.file;
     if(file === null) {
         return {};
+    }
+
+    if(viewer.action === LIKE_FILE) {
+        file.like();
     }
     return {
         file,
