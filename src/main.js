@@ -9,7 +9,8 @@ app.on('ready', () => {
         height: 600,
         webPreferences: {
             nodeIntegration: true
-        }
+        },
+        fullscreenable: true
     });
 
     win.webContents.openDevTools();
