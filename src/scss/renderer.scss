@@ -1,0 +1,9 @@
+@import './variables';
+@import './bootstrap';
+@import './components/viewer';
+
+html, body {
+    background-color: $window-background-color;
+    color: $window-color;
+    font-family: $window-font-family;
+}

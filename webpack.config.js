@@ -25,7 +25,7 @@ let renderer = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env'],
+                        presets: ['@babel/preset-env', '@babel/preset-react'],
                         plugins: [
                             ['@babel/plugin-transform-runtime',
                                 {
@@ -36,6 +36,10 @@ let renderer = {
                         ]
                     }
                 }
+            }, {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
             }
         ]
     },
