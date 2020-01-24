@@ -7,10 +7,17 @@ export default class App extends Component {
         e.preventDefault();
         this.props.onKeyPress(e);
     };
+    
+    onLoad = () => {
+        this.props.onLoad();
+    }
 
     componentDidMount() {
         if(this.props.onKeyPress) {
             window.addEventListener('keypress', this.onKeyPress)
+        }
+        if(this.props.onLoad) {
+            window.addEventListener('load', this.onLoad);
         }
     }
 

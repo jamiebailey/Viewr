@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import uuid from 'uuid/v5';
-import Store from '../store';
+import Storage from './storage';
 
 const IMAGE = ['jpg', 'jpeg', 'gif', 'png'];
 const VIDEO = ['mp4', 'webm', 'mkv'];
@@ -54,7 +54,7 @@ export default class File {
     }
 
     _readStore(name) {
-        let data = Store.get(STORE_PREFIX + this.id);
+        let data = Storage.get(STORE_PREFIX + this.id);
         if(!data) {
             return null;
         }
@@ -66,11 +66,11 @@ export default class File {
     }
 
     _writeStore(name, value) {
-        let data = Store.get(STORE_PREFIX + this.id);
+        let data = Storage.get(STORE_PREFIX + this.id);
         let obj = (!data) ? {} : JSON.parse(data);
         obj[name] = value;
         data = JSON.stringify(obj);
-        Store.set(STORE_PREFIX + this.id, data);
+        Storage.set(STORE_PREFIX + this.id, data);
     }
 
 }

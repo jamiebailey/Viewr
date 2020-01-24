@@ -1,13 +1,13 @@
 import { remote } from 'electron';
 
 export default class Dialog {
-    static openDirectory = async () => {
-        let res = await remote.dialog.showOpenDialog({
+    static openDirectory = () => {
+        let res = remote.dialog.showOpenDialogSync({
             properties: ['openDirectory']
         });
-        if(res.canceled) {
+        if(res === undefined) {
             return false;
         }
-        return res.filePaths[0];
+        return res[0];
     }
 }

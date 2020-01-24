@@ -2,12 +2,27 @@ import { connect } from 'react-redux';
 import Pres from '../components/App';
 import FileSystem from '../system/filesystem';
 import store from '../../store';
-import { loadFile } from '../../actions';
+import { setDir, loadFile } from '../../actions';
+import Dialog from '../dialog';
+import Storage from '../system/storage';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     let app = state.app;
+    let dirname = app.dirname;
+    if(dirname === null) {
+        dirname = Storage.get('dir');
+        if(dirname === null) {
+            let dir = Dialog.openDirectory();
+            if(!dir) {
+                return mapStateToProps(state, ownProps);
+            }
+            dirname = dir;
+        }
+    }
+    FileSystem.setFolder(dirname);
+    Storage.set('dir', dirname);
     return {
-        dirname: app.dirname
+        dirname: dirname
     };
 }
 
@@ -16,10 +31,21 @@ const mapDispatchToProps = dispatch => {
         onKeyPress: e => {
             e.preventDefault();
             switch(e.charCode) {
-                case 114:
+                case 114: // r
+                    store.dispatch(loadFile(FileSystem.getRandomFile()));
+                    break;
+                case 111: // o
+                    let dir = Dialog.openDirectory();
+                    if(!dir) {
+                        return;
+                    }
+                    store.dispatch(setDir(dir));
                     store.dispatch(loadFile(FileSystem.getRandomFile()));
                     break;
             }
+        },
+        onLoad: () => {
+            store.dispatch(loadFile(FileSystem.getRandomFile()));
         }
     }
 };

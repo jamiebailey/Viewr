@@ -3,7 +3,7 @@ import Pres from '../components/Viewer';
 
 const mapStateToProps = (state, ownProps) => {
     let file = state.viewer.file;
-    if(file === undefined) {
+    if(file === null) {
         return {};
     }
     return {

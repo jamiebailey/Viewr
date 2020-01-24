@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
-import { LOAD_FILE } from './actions';
-import { stat } from 'fs';
+import { SET_DIR, LOAD_FILE } from './actions';
 
 function app(state = null, action) {
     if(state === null) {
@@ -9,6 +8,11 @@ function app(state = null, action) {
         };
     }
     switch(action.type) {
+        case SET_DIR:
+            return Object.assign({}, state, {
+                dirname: action.name
+            })
+            break;
         default:
             return state;
     }
