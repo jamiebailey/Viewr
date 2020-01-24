@@ -20,7 +20,7 @@ export default class FileSystem {
         let i = Math.floor(Math.random() * pool.length);
         if(this.prevFile !== undefined) {
             if(this.prevFile.id === pool[i].id) {
-                i = Math.floor(Math.random() * pool.length);
+                return this.getRandomFile();
             }
         }
         return this.prevFile = pool[i];

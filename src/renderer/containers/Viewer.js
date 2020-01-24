@@ -21,7 +21,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         file,
         src: file.filepath,
-        type: file.type
+        type: file.type,
+        likes: file.likes
     }
 }
 
