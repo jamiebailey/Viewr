@@ -1,6 +1,7 @@
 @import './variables';
 @import './bootstrap';
 @import './components/viewer';
+@import './components/controls';
 
 html, body {
     background-color: $window-background-color;

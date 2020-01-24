@@ -18,6 +18,10 @@ export default class FileSystem {
         return likes;
     }
 
+    static getFirstFile = () => {
+        
+    };
+
     static getRandomFile = () => {
         let likes = this.getTotalLikes();
         let rand = Math.floor(Math.random() * (likes + this.files.length));

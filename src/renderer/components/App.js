@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Viewer from '../containers/Viewer';
+import Controls from './Controls';
 
 export default class App extends Component {
 
@@ -22,6 +23,11 @@ export default class App extends Component {
     }
 
     render() {
-        return <Viewer />;
+        return (
+            <div>
+                <Controls />
+                <Viewer />
+            </div>
+        );
     }
 }
