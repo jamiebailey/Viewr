@@ -32,20 +32,20 @@ const mapDispatchToProps = dispatch => {
             e.preventDefault();
             switch(e.charCode) {
                 case 114: // r
-                    store.dispatch(loadFile(FileSystem.getRandomFile()));
+                    dispatch(loadFile(FileSystem.getRandomFile()));
                     break;
                 case 111: // o
                     let dir = Dialog.openDirectory();
                     if(!dir) {
                         return;
                     }
-                    store.dispatch(setDir(dir));
-                    store.dispatch(loadFile(FileSystem.getRandomFile()));
+                    dispatch(setDir(dir));
+                    dispatch(loadFile(FileSystem.getRandomFile()));
                     break;
             }
         },
         onLoad: () => {
-            store.dispatch(loadFile(FileSystem.getRandomFile()));
+            dispatch(loadFile(FileSystem.getRandomFile()));
         }
     }
 };
