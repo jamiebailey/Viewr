@@ -34,7 +34,6 @@ export default class File {
 
     like(amount = 1) {
         this.likes += amount;
-        console.log(this.likes);
         this._save();
     }
 
