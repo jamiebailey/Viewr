@@ -12,8 +12,6 @@ app.on('ready', () => {
         },
         fullscreenable: true
     });
-
-    win.webContents.openDevTools();
     win.loadFile(path.resolve('main.html'));
 
 });
