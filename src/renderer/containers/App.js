@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Pres from '../components/App';
 import FileSystem from '../system/filesystem';
-import { setDir, loadFile } from '../actions';
+import { setDir, fileLoaded } from '../actions';
 import Dialog from '../dialog';
 import Storage from '../system/storage';
 
@@ -36,12 +36,12 @@ const mapDispatchToProps = (dispatch) => {
                         return;
                     }
                     dispatch(setDir(dir));
-                    dispatch(loadFile(FileSystem.getRandomFile()));
+                    dispatch(fileLoaded(FileSystem.getRandomFile()));
                     break;
             }
         },
         onLoad: () => {
-            dispatch(loadFile(FileSystem.getRandomFile()));
+            dispatch(fileLoaded(FileSystem.getRandomFile()));
         }
     }
 };

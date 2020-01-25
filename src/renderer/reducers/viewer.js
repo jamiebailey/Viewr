@@ -1,4 +1,4 @@
-import { LOAD_FILE, UPDATE_LIKES } from '../actions/';
+import { FILE_LOADED, UPDATE_LIKES } from '../actions/';
 
 export default function viewer(state = null, action) {
     if(state === null) {
@@ -12,7 +12,7 @@ export default function viewer(state = null, action) {
     }
 
     switch (action.type) {
-        case LOAD_FILE:
+        case FILE_LOADED:
             return Object.assign({}, state, {
                 file: action.file,
                 index: state.list.length,

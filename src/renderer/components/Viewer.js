@@ -6,7 +6,7 @@ import FileSystem from '../system/filesystem';
 export default class Viewer extends Component {
 
     loadRandomFile() {
-        this.props.loadFile(FileSystem.getRandomFile());
+        this.props.fileLoaded(FileSystem.getRandomFile());
     }
 
     onKeyDown(e) {

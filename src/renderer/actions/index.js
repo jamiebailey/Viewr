@@ -1,9 +1,9 @@
-export const LOAD_FILE = 'LOAD_FILE';
+export const FILE_LOADED = 'FILE_LOADED';
 export const SET_DIR = 'SET_DIR';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
 
-export function loadFile(file) {
-    return {type: LOAD_FILE, file}
+export function fileLoaded(file) {
+    return {type: FILE_LOADED, file}
 }
 
 export function setDir(name) {

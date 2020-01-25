@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Pres from '../components/Viewer';
-import { loadFile, updateLikes } from '../actions/';
+import { fileLoaded, updateLikes } from '../actions/';
 
 const mapStateToProps = state => {
     let viewer = state.viewer;
@@ -19,8 +19,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        loadFile: file => {
-            return dispatch(loadFile(file));
+        fileLoaded: file => {
+            return dispatch(fileLoaded(file));
         },
         updateLikes: likes => {
             return dispatch(updateLikes(likes));
