@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Pres from '../components/App';
 import FileSystem from '../system/filesystem';
-import { setDir, loadFile, likeFile, dislikeFile } from '../actions';
+import { setDir, loadFile } from '../actions';
 import Dialog from '../dialog';
 import Storage from '../system/storage';
 
@@ -30,9 +30,6 @@ const mapDispatchToProps = (dispatch) => {
         onKeyDown: e => {
             e.preventDefault();
             switch(e.keyCode) {
-                case 82: // r
-                    dispatch(loadFile(FileSystem.getRandomFile()));
-                    break;
                 case 79: // o
                     let dir = Dialog.openDirectory();
                     if(!dir) {
@@ -40,12 +37,6 @@ const mapDispatchToProps = (dispatch) => {
                     }
                     dispatch(setDir(dir));
                     dispatch(loadFile(FileSystem.getRandomFile()));
-                    break;
-                case 76: // l
-                    dispatch(likeFile());
-                    break;
-                case 75: // k
-                    dispatch(dislikeFile());
                     break;
             }
         },

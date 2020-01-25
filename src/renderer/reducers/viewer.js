@@ -1,4 +1,4 @@
-import { LOAD_FILE, LIKE_FILE, DISLIKE_FILE } from '../actions/';
+import { LOAD_FILE, UPDATE_LIKES } from '../actions/';
 
 export default function viewer(state = null, action) {
     if(state === null) {
@@ -6,7 +6,8 @@ export default function viewer(state = null, action) {
             file: null,
             index: 0,
             list: [],
-            action: null
+            action: null,
+            likes: 0,
         };
     }
 
@@ -16,15 +17,13 @@ export default function viewer(state = null, action) {
                 file: action.file,
                 index: state.list.length,
                 list: state.list.concat([action.file]),
-                action: action.type
+                action: action.type,
+                likes: action.file.likes
             });
-        case LIKE_FILE:
+        case UPDATE_LIKES:
             return Object.assign({}, state, {
-                action: action.type
-            })
-        case DISLIKE_FILE:
-            return Object.assign({}, state, {
-                action: action.type
+                action: action.type,
+                likes: action.likes,
             })
         default:
             return state;
