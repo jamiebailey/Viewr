@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
         onKeyDown: e => {
             e.preventDefault();
             switch(e.keyCode) {
-                case 79: // o
+                case 12: // num 5
                     let dir = Dialog.openDirectory();
                     if(!dir) {
                         remote.get
