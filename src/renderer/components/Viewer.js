@@ -14,7 +14,7 @@ export default class Viewer extends Component {
                 let i = this.props.index - 1;
                 if(i < 0) {
                     i = this.props.list.length - 1;
-                } else if(i > this.props.list.length - 2) {
+                } else if(i > this.props.list.length - 1) {
                     i = 0;
                 }
                 file = this.props.list[i];
