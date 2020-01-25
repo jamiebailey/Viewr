@@ -15,6 +15,14 @@ export default class Content extends Component {
         window.addEventListener('mousemove', this.onMouseMove.bind(this));
     }
 
+    componentWillReceiveProps() {
+        this.setState({
+            zoom: 1,
+            x: 0,
+            y: 0
+        })
+    }
+
     onMouseMove(e) {
         e.preventDefault();
         if(!this.mouseDown) {
