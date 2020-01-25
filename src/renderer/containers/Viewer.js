@@ -13,7 +13,9 @@ const mapStateToProps = state => {
         file,
         src: file.filepath,
         type: file.type,
-        likes: viewer.likes
+        likes: viewer.likes,
+        index: viewer.index,
+        list: viewer.list
     }
 }
 

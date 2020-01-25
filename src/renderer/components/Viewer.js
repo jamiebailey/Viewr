@@ -5,14 +5,28 @@ import FileSystem from '../system/filesystem';
 
 export default class Viewer extends Component {
     onKeyDown(e) {
+        let file = null;
         switch(e.keyCode) {
+            case 40:
+                if(this.props.list.length === 0) {
+                    break;
+                }
+                let i = this.props.index - 1;
+                if(i < 0) {
+                    i = this.props.list.length - 1;
+                } else if(i > this.props.list.length - 2) {
+                    i = 0;
+                }
+                file = this.props.list[i];
+                this.props.fileLoaded(file);
+                break;
             case 37: // left
                 this.props.fileLoaded(FileSystem.getPrevFile(this.props.file));
                 break;
             case 38: // up
                 this.props.fileLoaded(FileSystem.getRandomFile());
                 break;
-            case 39:
+            case 39: // right
                 this.props.fileLoaded(FileSystem.getNextFile(this.props.file));
                 break;
             case 75: // k
