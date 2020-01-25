@@ -4,6 +4,7 @@ import FileSystem from '../system/filesystem';
 import { dirUpdated, fileLoaded } from '../actions';
 import Dialog from '../dialog';
 import Storage from '../system/storage';
+import { remote } from 'electron';
 
 const mapStateToProps = (state, ownProps) => {
     let app = state.app;
@@ -33,10 +34,15 @@ const mapDispatchToProps = (dispatch) => {
                 case 79: // o
                     let dir = Dialog.openDirectory();
                     if(!dir) {
+                        remote.get
                         return;
                     }
                     dispatch(dirUpdated(dir));
                     dispatch(fileLoaded(FileSystem.getRandomFile()));
+                    break;
+                case 122: // F11
+                    let win = remote.getCurrentWindow();
+                    win.setFullScreen(!win.isFullScreen());
                     break;
             }
         },

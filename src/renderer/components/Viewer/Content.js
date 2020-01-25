@@ -71,7 +71,7 @@ export default class Content extends Component {
         if(type === 'image') {
             output = <img src={src}></img>
         } else if(type === 'video') {
-            output = <video src={src} autoPlay="autoplay" loop={true}></video>
+            output = <video src={src} autoPlay="autoplay" loop={true} muted={true}></video>
         }
         return (
         <div className="Content" ref="Content" style={style} onMouseDown={this.onMouseDown.bind(this)} onMouseUp={this.onMouseUp.bind(this)}>{output}</div>
