@@ -4,36 +4,66 @@ import Likes from './Viewer/Likes';
 import FileSystem from '../system/filesystem';
 
 export default class Viewer extends Component {
+
+    previousShown() {
+        if(this.props.list.length === 0) {
+            return;
+        }
+        let i = this.props.index - 1;
+        if(i < 0) {
+            i = this.props.list.length - 1;
+        } else if(i > this.props.list.length - 1) {
+            i = 0;
+        }
+        this.props.fileLoaded(this.props.list[i]);
+    }
+
+    nextShown() {
+        if(this.props.list.length === 0) {
+            return;
+        }
+        let i = this.props.index + 1;
+        if(i > this.props.list.length - 1) {
+            i = 0;
+        }
+        this.props.fileLoaded(this.props.list[i]);
+    }
+
+    previousFile() {
+        this.props.fileLoaded(FileSystem.getPrevFile(this.props.file));
+    }
+
+    nextFile() {
+        this.props.fileLoaded(FileSystem.getNextFile(this.props.file));
+    }
+
+    random() {
+        this.props.fileLoaded(FileSystem.getRandomFile());
+    }
+
     onKeyDown(e) {
         let file = null;
         switch(e.keyCode) {
-            case 40:
-                if(this.props.list.length === 0) {
-                    break;
-                }
-                let i = this.props.index - 1;
-                if(i < 0) {
-                    i = this.props.list.length - 1;
-                } else if(i > this.props.list.length - 1) {
-                    i = 0;
-                }
-                file = this.props.list[i];
-                this.props.fileLoaded(file);
+            case 45: // numpad 0
+                this.random();
                 break;
-            case 37: // left
-                this.props.fileLoaded(FileSystem.getPrevFile(this.props.file));
+            case 40: // numpad down
+                this.previousShown();
                 break;
-            case 38: // up
-                this.props.fileLoaded(FileSystem.getRandomFile());
+            case 37: // numpad left
+                this.previousFile();
                 break;
-            case 39: // right
-                this.props.fileLoaded(FileSystem.getNextFile(this.props.file));
+            case 38: // numpad up
+                this.nextShown();
                 break;
-            case 75: // k
+            case 39: // numpad right
+                this.nextFile();
+                break;
+            case 109: // numpad +
                 this.props.file.dislike();
                 this.props.updateLikes(this.props.file.likes);
                 break;
-            case 76: // l
+            case 107: // numpad -
                 this.props.file.like();
                 this.props.updateLikes(this.props.file.likes);
                 break;
