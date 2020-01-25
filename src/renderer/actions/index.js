@@ -1,13 +1,13 @@
 export const FILE_LOADED = 'FILE_LOADED';
-export const SET_DIR = 'SET_DIR';
+export const DIR_UPDATED = 'DIR_UPDATED';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
 
 export function fileLoaded(file) {
     return {type: FILE_LOADED, file}
 }
 
-export function setDir(name) {
-    return {type: SET_DIR, name};
+export function dirUpdated(name) {
+    return {type: DIR_UPDATED, name};
 }
 
 export function updateLikes(likes) {

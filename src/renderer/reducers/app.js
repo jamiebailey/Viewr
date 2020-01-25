@@ -1,4 +1,4 @@
-import { SET_DIR } from '../actions/';
+import { DIR_UPDATED } from '../actions/';
 
 export default function app(state = null, action) {
     if(state === null) {
@@ -7,7 +7,7 @@ export default function app(state = null, action) {
         };
     }
     switch(action.type) {
-        case SET_DIR:
+        case DIR_UPDATED:
             return Object.assign({}, state, {
                 dirname: action.name
             })
