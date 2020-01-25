@@ -12,6 +12,6 @@ app.on('ready', () => {
         },
         fullscreenable: true
     });
-    win.loadFile(path.resolve('main.html'));
+    win.loadFile('./main.html');
 
 });
