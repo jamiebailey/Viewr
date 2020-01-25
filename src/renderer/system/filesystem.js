@@ -18,8 +18,30 @@ export default class FileSystem {
         return likes;
     }
 
-    static getFirstFile = () => {
-        
+    static getFileIndex = (currFile) => {
+        for(let i in this.files) {
+            let file = this.files[i];
+            if(file.id === currFile.id) {
+                return i;
+            }
+        }
+        return false;
+    };
+
+    static getNextFile = (currFile) => {
+        let i = parseInt(this.getFileIndex(currFile)) + 1;
+        if(i >= this.files.length) {
+            i = 0;
+        }
+        return this.files[i];
+    };
+
+    static getPrevFile = (currFile) => {
+        let i = this.getFileIndex(currFile) - 1;
+        if(i < 0) {
+            i = this.files.length - 1;
+        }
+        return this.files[i];
     };
 
     static getRandomFile = () => {

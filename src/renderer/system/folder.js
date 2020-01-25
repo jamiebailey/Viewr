@@ -39,6 +39,9 @@ export default class Folder {
                 continue;
             }
         }
+        this.files.sort((a, b) => {
+            return a.filename.localeCompare(b.filename, 'en', {numeric: true});
+        });
         this.allFiles = this.files;
         for(let folder of this.folders) {
             this.allFiles = this.allFiles.concat(folder.allFiles);

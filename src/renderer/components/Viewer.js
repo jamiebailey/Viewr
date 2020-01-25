@@ -4,15 +4,16 @@ import Likes from './Viewer/Likes';
 import FileSystem from '../system/filesystem';
 
 export default class Viewer extends Component {
-
-    loadRandomFile() {
-        this.props.fileLoaded(FileSystem.getRandomFile());
-    }
-
     onKeyDown(e) {
         switch(e.keyCode) {
+            case 37: // left
+                this.props.fileLoaded(FileSystem.getPrevFile(this.props.file));
+                break;
             case 38: // up
-                this.loadRandomFile();
+                this.props.fileLoaded(FileSystem.getRandomFile());
+                break;
+            case 39:
+                this.props.fileLoaded(FileSystem.getNextFile(this.props.file));
                 break;
             case 75: // k
                 this.props.file.dislike();
