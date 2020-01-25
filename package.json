@@ -25,7 +25,7 @@
     "start": "electron .",
     "watch": "webpack --config webpack.config.js --watch --mode=development",
     "build": "webpack --config webpack.config.js --mode=production",
-    "dist": "electron-packager . viewr --platform=win32 --out=dist"
+    "dist": "electron-packager . viewr --platform=win32 --out=dist --overwrite"
   },
   "dependencies": {
     "@babel/runtime": "^7.8.3",
